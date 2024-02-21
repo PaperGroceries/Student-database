@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <main class="container-fluid"> 
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <h1>USERS</h1>
+                <ul>
+                    <li th:each="user:${us}">
+                        <span th:text="${user.name}"></span><br>
+                        <span th:text="${user.password}"></span>
+                        <div th:switch="${user.name}">
+                            <span th:case="'bobby'">Instructor</span>
+                            <span th:case="'steve'">Uh oh! steve</span>
+                            <span th:case="*">General user</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </main>
+</body>
+</html>
