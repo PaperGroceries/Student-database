@@ -33,6 +33,22 @@ public class UsersController {
         return "users/showAll";
     }
 
+    @GetMapping("/users/viewById")
+    public String getUserById(@RequestParam Map<String, String> newuser, Model model, HttpServletResponse response)
+    {
+        System.out.println("Getting user by id");
+        int uid = Integer.parseInt(newuser.get("uid"));
+        Users users = userRepo.findByUid(uid);
+        if (users != null) {
+            model.addAttribute("us", users);
+
+            return "users/updateUser";
+        } else {
+            response.setStatus(404); // User not found
+            return "users/userNotFound";
+        }
+    }
+
     @PostMapping("/users/add")
     public String addUser(@RequestParam Map<String, String> newuser, HttpServletResponse response)
     {
@@ -46,7 +62,7 @@ public class UsersController {
     }
    
     
-    //write a method to change attributes of a user
+    
     @PostMapping("/users/update")
     public String updateUser(@RequestParam Map<String, String> newuser, HttpServletResponse response)
     {
@@ -54,14 +70,16 @@ public class UsersController {
         String name = newuser.get("name");
         String password = newuser.get("password");
         int size = Integer.parseInt(newuser.get("size"));
-        List<Users> users = userRepo.findByName(name);
-        if (!users.isEmpty()) {
-            Users user = users.get(0);
+        
+        int uid = Integer.parseInt(newuser.get("uid"));
+        Users user = userRepo.findByUid(uid);
+        if (user != null) {
             user.setPassword(password);
+            user.setName(name);
             user.setSize(size);
             userRepo.save(user);
             response.setStatus(201); // Updated
-            return "users/updatedUser";
+            return "users/addedUser";
         } else {
             response.setStatus(404); // User not found
             return "users/userNotFound";
@@ -77,6 +95,23 @@ public class UsersController {
     List<Users> users = userRepo.findByName(name);
     if (!users.isEmpty()) {
         userRepo.deleteAll(users);
+        response.setStatus(201); // Deleted
+        return "users/deletedUser";
+    } else {
+        response.setStatus(404); // User not found
+        return "users/userNotFound";
+    }
+    }
+
+    //connect this instead later
+    @PostMapping("/users/deleteById")
+    public String deleteUserById(@RequestParam Map<String, String> newuser, HttpServletResponse response)
+    {
+    System.out.println("DELETE user by id");
+    int uid = Integer.parseInt(newuser.get("uid"));
+    Users users = userRepo.findByUid(uid);
+    if (users != null) {
+        userRepo.delete(users);
         response.setStatus(201); // Deleted
         return "users/deletedUser";
     } else {
