@@ -15,23 +15,23 @@
 				<form action="/users/update" method="post">
                     
 					<div class="mb-3">
-						
-						<input type="text" id="name" name="name" class="form-control form-control-lg" 
-                        th:value="${us.name}">
-					</div>
-					<div class="mb-3">
-						
-						<input type="password" id="password" name="password" class="form-control form-control-lg" 
-                        th:value="${us.password}">
-					</div>
+                        <input type="text" id="name" name="name" class="form-control form-control-lg" th:value="${student.name}">
+                    </div>
                     <div class="mb-3">
-						
-						<input type="number" id="size" name="size" class="form-control form-control-lg" 
-                            placeholder="Size">
-					</div>
+                        <input type="text" id="weight" name="weight" class="form-control form-control-lg" th:value="${student.weight}" placeholder="Weight">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" id="height" name="height" class="form-control form-control-lg" th:value="${student.height}" placeholder="Height">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" id="hairColor" name="hairColor" class="form-control form-control-lg" th:value="${student.hairColor}" placeholder="Hair Color">
+                    </div>
+                    <div class="mb-3">
+                        <input type="textr" id="gpa" name="gpa" class="form-control form-control-lg" th:value="${student.gpa}" placeholder="GPA">
+                    </div>
 
                     <!-- resending uid -->
-                    <input type="hidden" id="uid" name="uid" th:value="${us.uid}">
+                    <input type="hidden" id="uid" name="uid" th:value="${student.uid}">
 
 					<!-- Submit button -->
                     

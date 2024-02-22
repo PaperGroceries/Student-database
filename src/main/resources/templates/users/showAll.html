@@ -11,27 +11,31 @@
     <main class="container-fluid"> 
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <h1>USERS</h1>
+                <h1>Students</h1>
                 <ul>
-                    <li th:each="user:${us}">
-                        <span th:text="${user.name}"></span><br>
-                        <span th:text="${user.password}"></span>
-                        <div th:switch="${user.name}">
+                    <li th:each="student:${students}">
+                        <span th:text="${student.name}"></span><br>
+                        <span th:text="${student.weight}"></span><br>
+                        <span th:text="${student.height}"></span><br>
+                        <span th:text="${student.hairColor}"></span><br>
+                        <span th:text="${student.gpa}"></span><br>
+            
+                        <!-- <div th:switch="${user.name}">
                             <span th:case="'bobby'">Instructor</span>
                             <span th:case="'steve'">Uh oh! steve</span>
                             <span th:case="*">General user</span>
-                        </div>
+                        </div> -->
+                        
                         <!-- <span th:text="${user.uid}"></span><br> -->
                         <form action="/users/delete" method="post">
-                            <input type="hidden" name="name" th:value="${user.name}" />
+                            <input type="hidden" name="name" th:value="${student.name}" />
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                         <form action="/users/viewById" method="get">
-                            <input type="hidden" name="uid" th:value="${user.uid}" />
+                            <input type="hidden" name="uid" th:value="${student.uid}" />
                             <button type="submit" class="btn btn-warning">Update</button>
                         </form>
                     </li>
-                </ul>
             </div>
 
         </div>
