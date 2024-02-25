@@ -55,7 +55,7 @@
                     <div class="student" th:each="student:${students}" th:style="'--weight: ' + ${student.weight} + '; --height: ' + ${student.height} + 'px; color: ' + ${student.hairColor.toLowerCase()}">
                         <span th:text="${student.name}"></span><br>
                         <span th:text="${student.gpa}" class="gpa"></span><br>
-            
+                        <!-- <span th:text="${student.uid}"></span><br> -->
                         
                         
                             <div class="buttons">

@@ -29,7 +29,7 @@ public class UsersController {
     {
         System.out.println("Getting all users");
 
-        List<Student> users = userRepo.findAll();
+        List<Student> users = userRepo.findAllByOrderByUid();
 
         model.addAttribute("students", users);
         return "users/showAll";
