@@ -65,7 +65,7 @@ public class UsersController {
 
         userRepo.save(new Student(newName, newWeight, newHeight, newHairColor, newGpa));
         response.setStatus(201);
-        return "users/addedUser";
+        return "redirect:/users/view";
     }
    
     
@@ -91,7 +91,7 @@ public class UsersController {
 
             userRepo.save(user);
             response.setStatus(201); // Updated
-            return "users/addedUser";
+            return "redirect:/users/view";
         } else {
             response.setStatus(404); // User not found
             return "users/userNotFound";
@@ -125,15 +125,22 @@ public class UsersController {
     if (users != null) {
         userRepo.delete(users);
         response.setStatus(201); // Deleted
-        return "users/deletedUser";
+        return "redirect:/users/view";
     } else {
         response.setStatus(404); // User not found
         return "users/userNotFound";
     }
     }
 
-  
-
+    
+    @PostMapping("/users/deleteAll")
+    public String deleteAllUsers(HttpServletResponse response)
+    {
+    System.out.println("DELETE all users");
+    userRepo.deleteAll();
+    response.setStatus(204); 
+    return "redirect:/users/view";
+    }
 
 }
 

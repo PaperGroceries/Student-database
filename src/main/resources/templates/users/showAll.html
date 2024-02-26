@@ -50,6 +50,11 @@
                     <div class="col-md-10">
                         <a href="/add.html" class="btn btn-primary mb-3 d-block w-100 text-center">Add Student</a>
                     </div>
+                    <div class="col-md-10">
+                        <form action="/users/deleteAll" method="post">
+                            <button type="submit" class="btn btn-danger mb-3 d-block w-100 text-center">Delete All(for han love)</button>
+                        </form>
+                    </div>
                 </div>
                 <div class="student-grid">
                     <div class="student" th:each="student:${students}" th:style="'--weight: ' + ${student.weight} + '; --height: ' + ${student.height} + 'px; color: ' + ${student.hairColor.toLowerCase()}">
